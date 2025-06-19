@@ -1,0 +1,4 @@
+fields httpRequest.country
+| stats count(*) as requestCount by httpRequest.country
+| sort requestCount desc
+| limit 100
