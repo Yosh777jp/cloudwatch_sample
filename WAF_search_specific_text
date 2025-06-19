@@ -1,0 +1,6 @@
+fields terminatingRuleId as Rule, labels.0.name as RuleLabel0, labels.1.name as RuleLabel1, labels.2.name as RuleLabel2, labels.3.name as RuleLabel3, action, httpRequest.country as Country, httpRequest.clientIp as ClientIP, httpRequest.httpMethod as Method,httpRequest.uri as URI
+| filter webaclId = "*"
+| parse @message /\{"name":"[Hh]ost\",\"value":\"(?<Host>[^"}]*)/
+| parse @message /\{"name":"[Uu]ser\-[Aa]gent\",\"value\"\:\"(?<UserAgent>[^"}]*)/
+| filter @message like "CHANGE_TO_TEXT"
+| sort action, URI desc
