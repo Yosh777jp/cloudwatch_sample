@@ -1,0 +1,4 @@
+fields httpRequest.clientIp
+| stats count(*) as requestCount by httpRequest.clientIp
+| sort requestCount desc
+| limit 100
